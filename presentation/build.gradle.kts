@@ -9,6 +9,7 @@ android {
     namespace = "com.arekalov.presentation"
     compileSdk = 34
 
+
     defaultConfig {
         minSdk = 24
 
@@ -31,6 +32,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+    buildFeatures {
+        viewBinding = true
     }
 }
 
