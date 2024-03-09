@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:elevation="@dimen/_10ssp"
+    app:cardCornerRadius="@dimen/_18ssp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_letter"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_70sdp"
+            android:src="@color/card_background"
+            android:contentDescription="@string/description"/>
+
+        <TextView
+            android:id="@+id/tv_letter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/iv_letter"
+            app:layout_constraintBottom_toBottomOf="@id/iv_letter"
+            app:layout_constraintStart_toStartOf="@id/iv_letter"
+            app:layout_constraintEnd_toEndOf="@id/iv_letter"
+            android:text="@string/letterExample"
+            android:textColor="@color/secondary_text"
+            android:textSize="@dimen/_40ssp"/>
+
+        <TextView
+            android:id="@+id/tv_category"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/iv_letter"
+            app:layout_constraintStart_toStartOf="@id/iv_letter"
+            app:layout_constraintEnd_toEndOf="@id/iv_letter"
+            android:text="@string/productExample"
+            style="@style/Regular"
+            android:layout_marginStart="@dimen/_7sdp"
+            android:layout_marginEnd="@dimen/_7sdp"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:gravity="center"
+            android:ellipsize="marquee"
+            android:maxLines="1"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>
