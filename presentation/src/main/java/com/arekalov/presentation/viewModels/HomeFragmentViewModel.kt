@@ -5,24 +5,27 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import androidx.paging.liveData
 import com.arekalov.data.models.Product
 import com.arekalov.data.network.ProductsRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-
+private const val ITEMS_PER_PAGE = 20
 class HomeFragmentViewModel(val repository: ProductsRepository): ViewModel() {
-    private val productsLiveData = MutableLiveData<List<Product>>()
-    fun getProducts() {
-        viewModelScope.launch {
-            val result = repository.getProducts()
-            if (result != null) {
-                productsLiveData.value = result!!
-            }
-            else {
-                Log.e(this.javaClass.toString(), "null result")
-            }
-        }
+    private var productsLiveData = MutableLiveData<PagingData<Product>>()
+
+    fun getProducts(): LiveData<PagingData<Product>> {
+        val response =  Pager(
+            config = PagingConfig(pageSize = ITEMS_PER_PAGE, enablePlaceholders = false),
+            pagingSourceFactory = {repository.productsPagingSource()}
+        ).liveData
+            .cachedIn(viewModelScope)
+        productsLiveData.value = response.value
+        return response
     }
 
-    fun observeProductsLiveData(): LiveData<List<Product>> = productsLiveData
+    fun observeProductsLiveData(): LiveData<PagingData<Product>> = productsLiveData
 }

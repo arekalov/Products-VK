@@ -2,25 +2,19 @@ package com.arekalov.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.arekalov.data.models.Product
 import com.arekalov.presentation.databinding.ProductCardBinding
 import com.bumptech.glide.Glide
 
-class ProductsAdapter : RecyclerView.Adapter<ProductsAdapter.ProductsViewHolder>() {
-    inner class ProductsViewHolder(val binding: ProductCardBinding) :
-        RecyclerView.ViewHolder(binding.root)
-
-    var productsList = ArrayList<Product>()
-        set(value) {
-            field = value;
-            notifyDataSetChanged()
-        }
+class ProductsAdapter : PagingDataAdapter<Product, ProductViewBinding>(ARTICLE_DIFF_CALLBACK) {
     var onClick: ((Product) -> Unit)? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductsViewHolder {
-        return ProductsViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewBinding {
+        return ProductViewBinding(
             ProductCardBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -29,15 +23,20 @@ class ProductsAdapter : RecyclerView.Adapter<ProductsAdapter.ProductsViewHolder>
         )
     }
 
-    override fun getItemCount(): Int {
-        return productsList.size
+    override fun onBindViewHolder(holder: ProductViewBinding, position: Int) {
+        val product = getItem(position)
+        if (product != null) {
+            holder.bind(product)
+        }
     }
 
-    override fun onBindViewHolder(holder: ProductsViewHolder, position: Int) {
-        holder.binding.tvTitleProduct.text = productsList[position].title
-        holder.binding.tvDescriptionProduct.text = productsList[position].description
-        Glide.with(holder.itemView)
-            .load(productsList[position].thumbnail)
-            .into(holder.binding.ivPhoto)
+    companion object {
+        private val ARTICLE_DIFF_CALLBACK = object : DiffUtil.ItemCallback<Product>() {
+            override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean =
+                oldItem.id == newItem.id
+
+            override fun areContentsTheSame(oldItem: Product, newItem: Product): Boolean =
+                oldItem == newItem
+        }
     }
 }
