@@ -1,6 +1,6 @@
 package com.arekalov.data.network
 
-import com.arekalov.data.ProductsNetworkService
+
 import com.arekalov.data.models.Product
 import com.arekalov.data.models.Products
 import retrofit2.Response
