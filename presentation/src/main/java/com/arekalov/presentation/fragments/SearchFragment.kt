@@ -5,20 +5,33 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.arekalov.data.network.ProductsRepository
 import com.arekalov.presentation.R
+import com.arekalov.presentation.adapters.ProductsAdapter
+import com.arekalov.presentation.databinding.FragmentSearchBinding
 
 
 class SearchFragment : Fragment() {
+    private lateinit var binding: FragmentSearchBinding
+    private lateinit var adapter: ProductsAdapter
+    private lateinit var repository: ProductsRepository
+    private
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        binding = FragmentSearchBinding.inflate(inflater)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
     }
 
 }

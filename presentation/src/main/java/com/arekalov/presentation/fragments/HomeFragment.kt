@@ -42,6 +42,15 @@ class HomeFragment : Fragment() {
         setUpProductAdapter()
         observeProducts()
         productOnClick()
+
+        searchOnClick()
+    }
+
+    private fun searchOnClick() {
+        binding.ivSearch.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToSearchFragment()
+            findNavController().navigate(action)
+        }
     }
 
     private fun productOnClick() {
