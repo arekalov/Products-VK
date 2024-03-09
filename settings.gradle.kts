@@ -21,5 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Products-VK"
 include(":app")
-include(":presenation")
-include(":data")
+include(":presentation")
