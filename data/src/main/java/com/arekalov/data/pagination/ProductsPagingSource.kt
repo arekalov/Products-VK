@@ -5,11 +5,13 @@ import androidx.paging.PagingState
 import com.arekalov.data.models.Product
 import com.arekalov.data.models.Products
 import com.arekalov.data.network.ProductsNetworkService
+import kotlinx.coroutines.delay
 import kotlin.math.max
 
 class ProductsPagingSource : PagingSource<Int, Product>() {
-    val network = ProductsNetworkService()
     private val STARTING_KEY = 0
+    private val LOAD_DELAY = 3000L
+    val network = ProductsNetworkService()
 
     private fun ensureValidKey(key: Int) = max(STARTING_KEY, key)
 
@@ -21,6 +23,7 @@ class ProductsPagingSource : PagingSource<Int, Product>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Product> {
         val start = params.key ?: STARTING_KEY
+        if (start != STARTING_KEY) delay(LOAD_DELAY.toLong())
         return LoadResult.Page(
             data = network.getProducts(start, params.loadSize).body()!!.products,
             prevKey = when (start) {

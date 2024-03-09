@@ -6,8 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.arekalov.data.models.Product
 import com.arekalov.data.network.ProductsNetworkService
@@ -67,6 +71,7 @@ class HomeFragment : Fragment() {
             }
         }
     }
+
 
     private fun setUpProductAdapter() {
         productsAdapter = ProductsAdapter()
