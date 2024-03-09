@@ -20,6 +20,18 @@
         style="@style/Regular"
         android:textColorHint="@color/secondary_text"
         android:inputType="text" />
+    
+    <ImageView
+        android:id="@+id/iv_not_found"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:src="@drawable/ic_not_found"
+        app:layout_constraintTop_toBottomOf="@id/et_search"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:contentDescription="@string/description"
+        android:visibility="invisible"/>
 
     <ImageView
         android:id="@+id/iv_search"
@@ -30,7 +42,8 @@
         android:layout_marginEnd="@dimen/_10sdp"
         android:foregroundGravity="center"
         app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/ic_search"/>
+        android:src="@drawable/ic_search"
+        android:contentDescription="@string/description"/>
 
 
     <androidx.recyclerview.widget.RecyclerView
