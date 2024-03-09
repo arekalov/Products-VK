@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">Products-VK</string>
-    <string name="home_title">Products</string>
+    <string name="app_name">com.arekalov.data.models.Products-VK</string>
+    <string name="home_title">com.arekalov.data.models.Products</string>
 </resources>
