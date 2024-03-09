@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.arekalov.presenation.fragments.HomeFragment"
+        android:name="com.arekalov.presentation.fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/categoriesFragment"
-        android:name="com.arekalov.presenation.fragments.CategoriesFragment"
+        android:name="com.arekalov.presentation.fragments.CategoriesFragment"
         android:label="fragment_categoties"
         tools:layout="@layout/fragment_categories" />
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.arekalov.presenation.fragments.SearchFragment"
+        android:name="com.arekalov.presentation.fragments.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
 </navigation>
