@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Products-VK</string>
     <string name="home_title">Products</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="enter_product_name">Enter product name</string>
     <string name="description">Image</string>
@@ -11,4 +10,6 @@
     <string name="brandExample">Brand: Xiaomi</string>
     <string name="brand">Brand: %1$s</string>
     <string name="price">Price: %1$s $</string>
+    <string name="categories">Categories</string>
+    <string name="letterExample">C</string>
 </resources>
