@@ -16,16 +16,14 @@ import kotlinx.coroutines.launch
 private const val ITEMS_PER_PAGE = 20
 class HomeFragmentViewModel(val repository: ProductsRepository): ViewModel() {
     private var productsLiveData = MutableLiveData<PagingData<Product>>()
+    val response =  Pager(
+        config = PagingConfig(pageSize = ITEMS_PER_PAGE, enablePlaceholders = false),
+        pagingSourceFactory = {repository.productsPagingSource()}
+    ).liveData
+        .cachedIn(viewModelScope)
 
     fun getProducts(): LiveData<PagingData<Product>> {
-        val response =  Pager(
-            config = PagingConfig(pageSize = ITEMS_PER_PAGE, enablePlaceholders = false),
-            pagingSourceFactory = {repository.productsPagingSource()}
-        ).liveData
-            .cachedIn(viewModelScope)
         productsLiveData.value = response.value
         return response
     }
-
-    fun observeProductsLiveData(): LiveData<PagingData<Product>> = productsLiveData
 }

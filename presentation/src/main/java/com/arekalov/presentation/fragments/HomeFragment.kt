@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.arekalov.data.models.Product
 import com.arekalov.data.network.ProductsNetworkService
@@ -40,6 +41,14 @@ class HomeFragment : Fragment() {
         productsViewModel.getProducts()
         setUpProductAdapter()
         observeProducts()
+        productOnClick()
+    }
+
+    private fun productOnClick() {
+        productsAdapter.onClick = {
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailProductFragment2(it)
+            findNavController().navigate(action)
+        }
     }
 
     private fun observeProducts() {

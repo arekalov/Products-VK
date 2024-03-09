@@ -1,5 +1,9 @@
 package com.arekalov.data.models
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Product(
     val brand: String,
     val category: String,
@@ -12,4 +16,4 @@ data class Product(
     val stock: Int,
     val thumbnail: String,
     val title: String
-)
+) : Parcelable
