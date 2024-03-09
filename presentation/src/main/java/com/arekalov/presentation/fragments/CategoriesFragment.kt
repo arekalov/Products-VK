@@ -7,23 +7,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.arekalov.data.network.ProductsNetworkService
 import com.arekalov.data.network.ProductsRepository
-import com.arekalov.presentation.R
-import com.arekalov.presentation.adapters.CategoryAdapter
+import com.arekalov.presentation.adapters.CategoriesAdapter
 import com.arekalov.presentation.databinding.FragmentCategoriesBinding
-import com.arekalov.presentation.viewModels.CategoryViewModel
+import com.arekalov.presentation.viewModels.CategoriesViewModel
 
 class CategoriesFragment : Fragment() {
     private lateinit var binding: FragmentCategoriesBinding
-    private lateinit var categoriesAdapter: CategoryAdapter
+    private lateinit var categoriesAdapter: CategoriesAdapter
     private lateinit var repository: ProductsRepository
-    private lateinit var categoryViewModel: CategoryViewModel
+    private lateinit var categoryViewModel: CategoriesViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         repository = ProductsRepository(ProductsNetworkService())
-        categoryViewModel = CategoryViewModel(repository)
+        categoryViewModel = CategoriesViewModel(repository)
     }
 
     override fun onCreateView(
@@ -31,6 +30,7 @@ class CategoriesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCategoriesBinding.inflate(inflater)
+        categoryViewModel.getCategories()
         return binding.root
     }
 
@@ -39,28 +39,27 @@ class CategoriesFragment : Fragment() {
         prepareAdapter()
         observeCategoriesLiveData()
         onClickOnCategory()
-        categoryViewModel.getCategories()
     }
 
     private fun onClickOnCategory() {
         categoriesAdapter.onCLick = {
-            val action = CategoriesFragmentDirections.actionCategoriesFragmentToProductsInCategoryFragment(it)
+            val action =
+                CategoriesFragmentDirections.actionCategoriesFragmentToProductsInCategoryFragment(it)
             findNavController().navigate(action)
         }
     }
 
     private fun observeCategoriesLiveData() {
-        categoryViewModel.observeSearchedViewModel().observe(viewLifecycleOwner) { categories ->
+        categoryViewModel.observeSearchedViewModel().observe(viewLifecycleOwner, Observer {   categories ->
             categoriesAdapter.differ.submitList(categories)
-
-        }
+        })
     }
 
     private fun prepareAdapter() {
-        categoriesAdapter = CategoryAdapter()
+        categoriesAdapter = CategoriesAdapter()
         binding.rvCategories.apply {
             adapter = categoriesAdapter
-            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+            layoutManager = GridLayoutManager(activity, 3, GridLayoutManager.VERTICAL, false)
         }
     }
 }

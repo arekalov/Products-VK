@@ -11,4 +11,5 @@
     <string name="brand">Brand: %1$s</string>
     <string name="price">Price: %1$s $</string>
     <string name="categories">Categories</string>
+    <string name="letterExample">C</string>
 </resources>

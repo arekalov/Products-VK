@@ -43,6 +43,7 @@ class ProductsInCategoryFragment : Fragment() {
         onClickOnProduct()
         val category = arguments?.getString("category")
         if (category != null) {
+            binding.tvCategory.text = category
             productsInCategoryViewModel.getProductByCategory(category)
         }
         else {

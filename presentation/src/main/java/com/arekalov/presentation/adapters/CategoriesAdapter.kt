@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.arekalov.presentation.databinding.CategoryCardBinding
 
-class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.VIewHolder>() {
+class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.VIewHolder>() {
     inner class VIewHolder(val binding: CategoryCardBinding) : RecyclerView.ViewHolder(binding.root)
 
     private val diffUtil = object : DiffUtil.ItemCallback<String>() {
@@ -38,7 +38,8 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.VIewHolder>() {
 
     override fun onBindViewHolder(holder: VIewHolder, position: Int) {
         val category = differ.currentList[position]
-        holder.binding.tvTitle.text = category
+        holder.binding.tvLetter.text = category.subSequence(0, 1)
+        holder.binding.tvCategory.text = category
         holder.itemView.setOnClickListener {
             onCLick!!.invoke(differ.currentList[position])
         }

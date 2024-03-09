@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.arekalov.data.network.ProductsRepository
 import kotlinx.coroutines.launch
 
-class CategoryViewModel(private val repository: ProductsRepository): ViewModel() {
+class CategoriesViewModel(private val repository: ProductsRepository): ViewModel() {
     private val categoriesLiveData = MutableLiveData<List<String>>()
     fun getCategories(){
         viewModelScope.launch {
