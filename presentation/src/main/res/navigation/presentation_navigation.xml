@@ -7,17 +7,34 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.arekalov.presenation.fragments.HomeFragment"
+        android:name="com.arekalov.presentation.fragments.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_detailProductFragment2"
+            app:destination="@id/detailProductFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/categoriesFragment"
-        android:name="com.arekalov.presenation.fragments.CategoriesFragment"
+        android:name="com.arekalov.presentation.fragments.CategoriesFragment"
         android:label="fragment_categoties"
         tools:layout="@layout/fragment_categories" />
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.arekalov.presenation.fragments.SearchFragment"
+        android:name="com.arekalov.presentation.fragments.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/detailProductFragment"
+        android:name="com.arekalov.presentation.fragments.DetailProductFragment"
+        android:label="fragment_detail_product"
+        tools:layout="@layout/fragment_detail_product" >
+        <argument
+            android:name="product"
+            app:argType="com.arekalov.data.models.Product" />
+    </fragment>
 </navigation>

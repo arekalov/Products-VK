@@ -39,16 +39,29 @@ android {
 }
 
 dependencies {
-    // ssp sdp
-    implementation("com.intuit.sdp:sdp-android:1.1.0")
-    implementation("com.intuit.ssp:ssp-android:1.1.0")
+    implementation("androidx.paging:paging-runtime:3.2.1") {
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+        // ssp sdp
+        implementation("com.intuit.sdp:sdp-android:1.1.0")
+        implementation("com.intuit.ssp:ssp-android:1.1.0")
+
+        // data module
+        implementation(project(":data"))
+
+        //    glide
+        implementation("com.github.bumptech.glide:glide:4.16.0")
+
+//    pagination
+        implementation("androidx.paging:paging-runtime:3.2.1")
+
+        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+        implementation(libs.androidx.core.ktx)
+        implementation(libs.androidx.appcompat)
+        implementation(libs.material)
+        implementation(libs.androidx.navigation.fragment.ktx)
+        implementation(libs.androidx.navigation.ui.ktx)
+        testImplementation(libs.junit)
+        androidTestImplementation(libs.androidx.junit)
+        androidTestImplementation(libs.androidx.espresso.core)
+    }
 }

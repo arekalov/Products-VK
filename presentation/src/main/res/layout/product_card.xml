@@ -17,32 +17,38 @@
             android:layout_width="@dimen/_130sdp"
             android:layout_height="@dimen/_130sdp"
             android:src="@color/accent"
+            android:scaleType="centerCrop"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:contentDescription="@string/description"/>
 
         <TextView
             android:id="@+id/tv_title_product"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginStart="@dimen/_7sdp"
+            android:layout_marginEnd="@dimen/_7sdp"
             app:layout_constraintTop_toBottomOf="@id/iv_photo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             style="@style/RegularHeader"
+            android:ellipsize="marquee"
+            android:maxLines="1"
             android:text="@string/productExample"/>
 
         <TextView
             android:id="@+id/tv_description_product"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_3sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
             android:layout_marginTop="@dimen/_3sdp"
             app:layout_constraintTop_toBottomOf="@id/tv_title_product"
             app:layout_constraintStart_toStartOf="@id/iv_photo"
             app:layout_constraintEnd_toEndOf="@id/iv_photo"
             style="@style/Regular"
-            android:ellipsize="end"
+            android:ellipsize="marquee"
             android:maxLines="1"
             android:text="@string/DescriptionExample"/>
 
