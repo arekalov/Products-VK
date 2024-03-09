@@ -1,5 +1,6 @@
 package com.arekalov.data.network
 
+import com.arekalov.data.models.Categories
 import com.arekalov.data.models.Product
 import com.arekalov.data.models.Products
 import okhttp3.OkHttpClient
@@ -31,6 +32,19 @@ class ProductsNetworkService {
         return productsService.getProducts(skip.toString(), limit.toString())
     }
 
+    suspend fun searchProducts(keyword: String): Response<Products> {
+        return productsService.searchProducts(keyword)
+    }
+
+    suspend fun getCategories(): Response<Categories> {
+        return productsService.getCategories()
+    }
+
+    suspend fun getProductsByCategory(title: String): Response<Products> {
+        return productsService.getProductsInCategory(title)
+    }
+
+
 }
 
 interface ProductsApi {
@@ -42,4 +56,13 @@ interface ProductsApi {
 
     @GET("/products?")
     suspend fun getProducts(@Query("skip") skip: String, @Query("limit") limit: String): Response<Products>
+
+    @GET("products/search?")
+    suspend fun searchProducts(@Query("q") keyword: String): Response<Products>
+
+    @GET("products/categories")
+    suspend fun getCategories(): Response<Categories>
+
+    @GET("products/category/{title}")
+    suspend fun getProductsInCategory(@Path("title") title: String): Response<Products>
 }
