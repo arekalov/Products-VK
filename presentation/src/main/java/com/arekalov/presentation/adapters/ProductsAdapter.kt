@@ -31,6 +31,7 @@ class ProductsAdapter : PagingDataAdapter<Product, ProductViewBinding>(PRODUCT_D
         holder.itemView.setOnClickListener{
             onClick!!.invoke(getItem(position)!!)
         }
+
     }
 
     companion object {

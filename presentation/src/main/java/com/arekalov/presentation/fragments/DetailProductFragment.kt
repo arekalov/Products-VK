@@ -38,6 +38,7 @@ class DetailProductFragment : Fragment() {
     }
 
     private fun setCarouselAdapter(images: List<String>) {
+
         carouselAdapter = CarouselAdapter(images)
         binding.rvCarousel.adapter = carouselAdapter
         binding.rvCarousel.layoutManager = CarouselLayoutManager()
