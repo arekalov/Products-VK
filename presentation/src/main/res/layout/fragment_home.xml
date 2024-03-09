@@ -38,7 +38,6 @@
         android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginBottom="@dimen/_5sdp"
-        app:layoutManager="com.google.android.material.carousel.CarouselLayoutManager"/>
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
