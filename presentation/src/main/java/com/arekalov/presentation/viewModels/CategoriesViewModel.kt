@@ -9,7 +9,10 @@ import kotlinx.coroutines.launch
 
 class CategoriesViewModel(private val repository: ProductsRepository): ViewModel() {
     private val categoriesLiveData = MutableLiveData<List<String>>()
-    fun getCategories(){
+    init {
+        getCategories()
+    }
+    private fun getCategories(){
         viewModelScope.launch {
             val result = repository.getCategories()
             if (result != null) {
