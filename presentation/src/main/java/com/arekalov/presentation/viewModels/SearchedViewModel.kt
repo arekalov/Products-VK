@@ -19,5 +19,14 @@ class SearchedViewModel(val repository: ProductsRepository) : ViewModel() {
         }
     }
 
+    fun getProductByCategory(category: String){
+        viewModelScope.launch {
+            val result = repository.getProductsByCategory(category)
+            if (result != null) {
+                searchedViewModel.value = result!!
+            }
+        }
+    }
+
     fun observeSearchedViewModel(): LiveData<List<Product>> = searchedViewModel
 }

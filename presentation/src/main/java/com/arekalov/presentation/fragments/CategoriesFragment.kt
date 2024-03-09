@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arekalov.data.network.ProductsNetworkService
 import com.arekalov.data.network.ProductsRepository
@@ -37,7 +38,15 @@ class CategoriesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         prepareAdapter()
         observeCategoriesLiveData()
+        onClickOnCategory()
         categoryViewModel.getCategories()
+    }
+
+    private fun onClickOnCategory() {
+        categoriesAdapter.onCLick = {
+            val action = CategoriesFragmentDirections.actionCategoriesFragmentToProductsInCategoryFragment(it)
+            findNavController().navigate(action)
+        }
     }
 
     private fun observeCategoriesLiveData() {
