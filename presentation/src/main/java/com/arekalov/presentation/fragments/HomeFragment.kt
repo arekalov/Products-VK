@@ -2,27 +2,28 @@ package com.arekalov.presentation.fragments
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
-import androidx.lifecycle.Lifecycle
+import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
-import com.arekalov.data.models.Product
 import com.arekalov.data.network.ProductsNetworkService
 import com.arekalov.data.network.ProductsRepository
 import com.arekalov.presentation.adapters.ProductsAdapter
 import com.arekalov.presentation.databinding.FragmentHomeBinding
+import com.arekalov.presentation.viewModels.ConnectionLiveData
 import com.arekalov.presentation.viewModels.HomeFragmentViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlin.math.log
+
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
+    private lateinit var connectionLiveData: ConnectionLiveData
     private lateinit var productsViewModel: HomeFragmentViewModel
     private lateinit var productsAdapter: ProductsAdapter
 
@@ -30,6 +31,12 @@ class HomeFragment : Fragment() {
         super.onCreate(savedInstanceState)
         val productsRepository = ProductsRepository(ProductsNetworkService())
         productsViewModel = HomeFragmentViewModel(productsRepository)
+        val onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                requireActivity().finishAffinity()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     }
 
     override fun onCreateView(
@@ -42,12 +49,26 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        lifecycleScope.launch {
+            observeNetwork()
+            delay(300)
+            if (connectionLiveData.value == null || connectionLiveData.value == false) lostNetwork()
+        }
         productsViewModel.getProducts()
         setUpProductAdapter()
         observeProducts()
         productOnClick()
-
         searchOnClick()
+    }
+
+    private fun observeNetwork() {
+        connectionLiveData = ConnectionLiveData(requireActivity().application)
+        connectionLiveData.observe(viewLifecycleOwner) {
+        }
+    }
+
+    private fun lostNetwork() {
+        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToNoInternetFragment())
     }
 
     private fun searchOnClick() {
@@ -66,18 +87,23 @@ class HomeFragment : Fragment() {
 
     private fun observeProducts() {
         viewLifecycleOwner.lifecycleScope.launch {
-            productsViewModel.getProducts().observe(viewLifecycleOwner) {
-                productsAdapter.submitData(lifecycle, it)
+            try {
+                productsViewModel.getProducts()?.observe(viewLifecycleOwner) {
+                    productsAdapter.submitData(lifecycle, it)
+                }
+            } catch (ex: Throwable) {
+                Log.e("error", "observeProducts: ${ex.message}",)
             }
         }
     }
 
 
-    private fun setUpProductAdapter() {
-        productsAdapter = ProductsAdapter()
-        binding.rvProducts.apply {
-            adapter = productsAdapter
-            layoutManager = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
+        private fun setUpProductAdapter() {
+            productsAdapter = ProductsAdapter()
+            binding.rvProducts.apply {
+                adapter = productsAdapter
+                layoutManager = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
+            }
         }
-    }
+
 }

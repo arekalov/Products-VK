@@ -11,20 +11,24 @@ import kotlinx.coroutines.launch
 class SearchedViewModel(val repository: ProductsRepository) : ViewModel() {
     private val searchedViewModel = MutableLiveData<List<Product>>()
     suspend fun searchProducts(keyword: String){
-        viewModelScope.launch {
-            val result = repository.searchProducts(keyword)
-            if (result != null) {
-                searchedViewModel.value = result!!
+        try {
+            viewModelScope.launch {
+                val result = repository.searchProducts(keyword)
+                if (result != null) {
+                    searchedViewModel.value = result!!
+                }
             }
-        }
-    }
+        } catch (ex: Exception) {}
+     }
 
     fun getProductByCategory(category: String){
         viewModelScope.launch {
-            val result = repository.getProductsByCategory(category)
-            if (result != null) {
-                searchedViewModel.value = result!!
-            }
+            try {
+                val result = repository.getProductsByCategory(category)
+                if (result != null) {
+                    searchedViewModel.value = result!!
+                }
+            } catch (ex: Exception) {}
         }
     }
 

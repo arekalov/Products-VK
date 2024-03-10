@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_noInternetFragment"
+            app:destination="@id/noInternetFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoriesFragment"
@@ -33,6 +36,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_categoriesFragment_to_noInternetFragment"
+            app:destination="@id/noInternetFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -46,6 +52,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_searchFragment_to_noInternetFragment"
+            app:destination="@id/noInternetFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailProductFragment"
@@ -71,5 +80,16 @@
         <argument
             android:name="category"
             app:argType="string" />
+        <action
+            android:id="@+id/action_productsInCategoryFragment_self"
+            app:destination="@id/productsInCategoryFragment" />
+        <action
+            android:id="@+id/action_productsInCategoryFragment_to_noInternetFragment"
+            app:destination="@id/noInternetFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/noInternetFragment"
+        android:name="com.arekalov.presentation.fragments.NoInternetFragment"
+        android:label="fragment_no_internet"
+        tools:layout="@layout/fragment_no_internet" />
 </navigation>
