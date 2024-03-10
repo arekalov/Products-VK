@@ -24,10 +24,13 @@
 3. Data (подключение к серверу, POJO, PagingSource)
 
 ### Особенности реализации
-- Clean Architecture + MVVM
+- Clean Architecture
+- MVVM
 - Single Activity
 - Навигация с помощью navigation components + BottomNavigationView
+- Пагинация с помощью Paging 3
 - Cotlin Coroutines + LiveData
 - Темная тема
+- Красивая иконка
 
 > PS А на стажировку то хочется)))
