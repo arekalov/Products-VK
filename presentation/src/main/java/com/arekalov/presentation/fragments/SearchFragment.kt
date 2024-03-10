@@ -57,11 +57,13 @@ class SearchFragment : Fragment() {
             observeNetwork()
             delay(100)
             if (connectionLiveData.value == null || connectionLiveData.value == false) lostNetwork()
+            else {
+                prepareProductsAdapter()
+                observeEditSearchLine()
+                observeSearchedProducts()
+                productSetOnClick()
+            }
         }
-        prepareProductsAdapter()
-        observeEditSearchLine()
-        observeSearchedProducts()
-        productSetOnClick()
     }
 
     private fun observeNetwork() {
@@ -82,19 +84,24 @@ class SearchFragment : Fragment() {
     }
 
     private fun observeSearchedProducts() {
+        Log.e("!!!!!!!!", "observe searched")
         viewLifecycleOwner.lifecycleScope.launch {
-            delay(500)
-            searchedViewModel.observeSearchedViewModel().observe(viewLifecycleOwner, Observer{ products ->
-                if (products.isNotEmpty()) {
-                    binding.ivNotFound.visibility = View.INVISIBLE
-                    binding.rvProducts.visibility = View.VISIBLE
-                    productsAdapter.differ.submitList(products)
-                }
-                else {
-                    binding.rvProducts.visibility = View.INVISIBLE
-                    binding.ivNotFound.visibility = View.VISIBLE
-                }
-            })
+            if (connectionLiveData.value == false) {
+                lostNetwork()
+            } else {
+                delay(500)
+                searchedViewModel.observeSearchedViewModel().observe(viewLifecycleOwner, Observer{ products ->
+                    if (products.isNotEmpty()) {
+                        binding.ivNotFound.visibility = View.INVISIBLE
+                        binding.rvProducts.visibility = View.VISIBLE
+                        productsAdapter.differ.submitList(products)
+                    }
+                    else {
+                        binding.rvProducts.visibility = View.INVISIBLE
+                        binding.ivNotFound.visibility = View.VISIBLE
+                    }
+                })
+            }
         }
     }
 
