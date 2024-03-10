@@ -95,7 +95,7 @@ class CategoriesFragment : Fragment() {
         categoriesAdapter = CategoriesAdapter()
         binding.rvCategories.apply {
             adapter = categoriesAdapter
-            layoutManager = GridLayoutManager(activity, 3, GridLayoutManager.VERTICAL, false)
+            layoutManager = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
         }
     }
 }
