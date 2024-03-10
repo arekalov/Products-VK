@@ -22,8 +22,12 @@ class HomeFragmentViewModel(val repository: ProductsRepository): ViewModel() {
     ).liveData
         .cachedIn(viewModelScope)
 
-    fun getProducts(): LiveData<PagingData<Product>> {
-        productsLiveData.value = response.value
-        return response
+    fun getProducts(): LiveData<PagingData<Product>>? {
+        try {
+            productsLiveData.value = response.value
+            return response
+        } catch (ex: Exception) {
+            Log.e("error", "getProducts: response is null", )
+            return null}
     }
 }

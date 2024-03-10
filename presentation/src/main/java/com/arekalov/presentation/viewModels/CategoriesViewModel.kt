@@ -14,10 +14,12 @@ class CategoriesViewModel(private val repository: ProductsRepository): ViewModel
     }
     private fun getCategories(){
         viewModelScope.launch {
-            val result = repository.getCategories()
-            if (result != null) {
-                categoriesLiveData.value = result!!
-            }
+            try {
+                val result = repository.getCategories()
+                if (result != null) {
+                    categoriesLiveData.value = result!!
+                }
+            } catch (ex: Exception) {}
         }
     }
 

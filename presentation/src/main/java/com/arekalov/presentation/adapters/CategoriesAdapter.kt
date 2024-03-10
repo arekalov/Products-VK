@@ -38,8 +38,8 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.VIewHolder>() {
 
     override fun onBindViewHolder(holder: VIewHolder, position: Int) {
         val category = differ.currentList[position]
-        holder.binding.tvLetter.text = category.subSequence(0, 1)
-        holder.binding.tvCategory.text = category
+        holder.binding.tvLetter.text = category.subSequence(0, 1).toString().capitalize()
+        holder.binding.tvCategory.text = category.capitalize()
         holder.itemView.setOnClickListener {
             onCLick!!.invoke(differ.currentList[position])
         }
