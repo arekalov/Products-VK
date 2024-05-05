@@ -39,7 +39,8 @@ android {
 }
 
 dependencies {
-    implementation("androidx.paging:paging-runtime:3.2.1") {
+//    Paging
+        implementation("androidx.paging:paging-runtime:3.2.1") {
 
 //        ssp sdp
         implementation("com.intuit.sdp:sdp-android:1.1.0")
