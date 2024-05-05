@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -20,6 +21,7 @@ import com.arekalov.presentation.adapters.SearchAndCategoryProductsAdapter
 import com.arekalov.presentation.databinding.FragmentSearchBinding
 import com.arekalov.presentation.viewModels.ConnectionLiveData
 import com.arekalov.presentation.viewModels.SearchedViewModel
+import com.arekalov.presentation.viewModels.factories.SearchedViewModelFactory
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -29,12 +31,11 @@ class SearchFragment : Fragment() {
     private lateinit var connectionLiveData: ConnectionLiveData
     private lateinit var binding: FragmentSearchBinding
     private lateinit var productsAdapter: SearchAndCategoryProductsAdapter
-    private lateinit var repository: ProductsRepository
-    private lateinit var searchedViewModel: SearchedViewModel
+    private val searchedViewModel: SearchedViewModel by viewModels {
+        SearchedViewModelFactory(ProductsRepository(ProductsNetworkService()))
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        repository = ProductsRepository(ProductsNetworkService())
-        searchedViewModel = SearchedViewModel(repository)
         val onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 findNavController().navigate(R.id.homeFragment)

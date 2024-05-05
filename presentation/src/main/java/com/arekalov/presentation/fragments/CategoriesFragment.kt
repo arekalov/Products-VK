@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -19,19 +20,19 @@ import com.arekalov.presentation.adapters.CategoriesAdapter
 import com.arekalov.presentation.databinding.FragmentCategoriesBinding
 import com.arekalov.presentation.viewModels.CategoriesViewModel
 import com.arekalov.presentation.viewModels.ConnectionLiveData
+import com.arekalov.presentation.viewModels.factories.CategoriesViewModelFactory
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class CategoriesFragment : Fragment() {
     private lateinit var binding: FragmentCategoriesBinding
     private lateinit var categoriesAdapter: CategoriesAdapter
-    private lateinit var repository: ProductsRepository
-    private lateinit var categoryViewModel: CategoriesViewModel
+    private val categoryViewModel: CategoriesViewModel by viewModels {
+        CategoriesViewModelFactory(ProductsRepository(ProductsNetworkService()))
+    }
     private lateinit var connectionLiveData: ConnectionLiveData
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        repository = ProductsRepository(ProductsNetworkService())
-        categoryViewModel = CategoriesViewModel(repository)
         val onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 findNavController().navigate(R.id.homeFragment)

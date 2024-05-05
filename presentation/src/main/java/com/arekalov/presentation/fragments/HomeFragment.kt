@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -16,21 +17,23 @@ import com.arekalov.presentation.adapters.ProductsAdapter
 import com.arekalov.presentation.databinding.FragmentHomeBinding
 import com.arekalov.presentation.viewModels.ConnectionLiveData
 import com.arekalov.presentation.viewModels.HomeFragmentViewModel
+import com.arekalov.presentation.viewModels.factories.HomeFragmentViewModelFactory
+import com.arekalov.presentation.viewModels.factories.SearchedViewModelFactory
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlin.math.log
 
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var connectionLiveData: ConnectionLiveData
-    private lateinit var productsViewModel: HomeFragmentViewModel
+
+    private  val productsViewModel: HomeFragmentViewModel by viewModels {
+        HomeFragmentViewModelFactory(ProductsRepository(ProductsNetworkService()))
+    }
     private lateinit var productsAdapter: ProductsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val productsRepository = ProductsRepository(ProductsNetworkService())
-        productsViewModel = HomeFragmentViewModel(productsRepository)
         val onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 requireActivity().finishAffinity()
@@ -92,18 +95,18 @@ class HomeFragment : Fragment() {
                     productsAdapter.submitData(lifecycle, it)
                 }
             } catch (ex: Throwable) {
-                Log.e("error", "observeProducts: ${ex.message}",)
+                Log.e("error", "observeProducts: ${ex.message}")
             }
         }
     }
 
 
-        private fun setUpProductAdapter() {
-            productsAdapter = ProductsAdapter()
-            binding.rvProducts.apply {
-                adapter = productsAdapter
-                layoutManager = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
-            }
+    private fun setUpProductAdapter() {
+        productsAdapter = ProductsAdapter()
+        binding.rvProducts.apply {
+            adapter = productsAdapter
+            layoutManager = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
         }
+    }
 
 }
