@@ -1,4 +1,4 @@
-package com.arekalov.presentation.adapters
+package com.arekalov.productsvk.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

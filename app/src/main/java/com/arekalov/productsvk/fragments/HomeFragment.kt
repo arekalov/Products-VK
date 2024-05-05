@@ -1,4 +1,4 @@
-package com.arekalov.presentation.fragments
+package com.arekalov.productsvk.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -11,12 +11,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.arekalov.data.network.ProductsNetworkService
-import com.arekalov.data.network.ProductsRepository
-import com.arekalov.presentation.adapters.ProductsAdapter
-import com.arekalov.presentation.viewModels.ConnectionLiveData
-import com.arekalov.presentation.viewModels.HomeFragmentViewModel
-import com.arekalov.presentation.viewModels.factories.HomeFragmentViewModelFactory
+import com.arekalov.productsvk.adapters.ProductsAdapter
+import com.arekalov.productsvk.viewModels.ConnectionLiveData
+import com.arekalov.productsvk.viewModels.HomeFragmentViewModel
+import com.arekalov.productsvk.viewModels.factories.HomeFragmentViewModelFactory
+import com.arekalov.productsvk.MainActivity
 import com.arekalov.productsvk.databinding.FragmentHomeBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -27,7 +26,7 @@ class HomeFragment : Fragment() {
     private lateinit var connectionLiveData: ConnectionLiveData
 
     private  val productsViewModel: HomeFragmentViewModel by viewModels {
-        HomeFragmentViewModelFactory(ProductsRepository(ProductsNetworkService()))
+        HomeFragmentViewModelFactory((activity as MainActivity).productsRepository)
     }
     private lateinit var productsAdapter: ProductsAdapter
 

@@ -1,4 +1,4 @@
-package com.arekalov.presentation.fragments
+package com.arekalov.productsvk.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -13,12 +13,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.arekalov.data.network.ProductsNetworkService
-import com.arekalov.data.network.ProductsRepository
-import com.arekalov.presentation.adapters.SearchAndCategoryProductsAdapter
-import com.arekalov.presentation.viewModels.ConnectionLiveData
-import com.arekalov.presentation.viewModels.SearchedViewModel
-import com.arekalov.presentation.viewModels.factories.SearchedViewModelFactory
+import com.arekalov.productsvk.adapters.SearchAndCategoryProductsAdapter
+import com.arekalov.productsvk.viewModels.ConnectionLiveData
+import com.arekalov.productsvk.viewModels.SearchedViewModel
+import com.arekalov.productsvk.viewModels.factories.SearchedViewModelFactory
+import com.arekalov.productsvk.MainActivity
 import com.arekalov.productsvk.R
 import com.arekalov.productsvk.databinding.FragmentSearchBinding
 import kotlinx.coroutines.Job
@@ -31,7 +30,7 @@ class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchBinding
     private lateinit var productsAdapter: SearchAndCategoryProductsAdapter
     private val searchedViewModel: SearchedViewModel by viewModels {
-        SearchedViewModelFactory(ProductsRepository(ProductsNetworkService()))
+        SearchedViewModelFactory((activity as MainActivity).productsRepository)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

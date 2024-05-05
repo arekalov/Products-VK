@@ -1,5 +1,6 @@
 [versions]
 agp = "8.3.0"
+daggerCompiler = "2.51.1"
 glide = "4.16.0"
 kotlin = "1.9.0"
 coreKtx = "1.12.0"
@@ -18,6 +19,7 @@ jetbrainsKotlinJvm = "1.9.0"
 pagingCommonKtx = "3.2.1"
 pagingCommonAndroid = "3.3.0-alpha04"
 pagingCommonJvm = "3.3.0-alpha04"
+retrofit = "2.11.0"
 sdpAndroid = "1.1.0"
 sspAndroid = "1.1.0"
 
@@ -25,6 +27,9 @@ sspAndroid = "1.1.0"
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "pagingCommonKtx" }
 androidx-paging-runtime-ktx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "pagingCommonKtx" }
+converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+dagger = { module = "com.google.dagger:dagger", version.ref = "daggerCompiler" }
+dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "daggerCompiler" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -40,6 +45,7 @@ androidx-paging-common-ktx = { group = "androidx.paging", name = "paging-common-
 androidx-paging-common-android = { group = "androidx.paging", name = "paging-common-android", version.ref = "pagingCommonAndroid" }
 androidx-paging-common-jvm = { group = "androidx.paging", name = "paging-common-jvm", version.ref = "pagingCommonJvm" }
 material-v190 = { module = "com.google.android.material:material", version.ref = "materialVersion" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 sdp-android = { module = "com.intuit.sdp:sdp-android", version.ref = "sdpAndroid" }
 ssp-android = { module = "com.intuit.ssp:ssp-android", version.ref = "sspAndroid" }
 

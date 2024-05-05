@@ -1,4 +1,4 @@
-package com.arekalov.presentation.fragments
+package com.arekalov.productsvk.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
-import com.arekalov.presentation.viewModels.ConnectionLiveData
+import com.arekalov.productsvk.viewModels.ConnectionLiveData
 import com.arekalov.productsvk.R
 
 class NoInternetFragment : Fragment() {

@@ -1,4 +1,4 @@
-package com.arekalov.presentation.fragments
+package com.arekalov.productsvk.fragments
 
 import android.content.ContentValues.TAG
 import android.os.Bundle
@@ -15,10 +15,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.arekalov.data.network.ProductsNetworkService
 import com.arekalov.data.network.ProductsRepository
-import com.arekalov.presentation.adapters.SearchAndCategoryProductsAdapter
-import com.arekalov.presentation.viewModels.ConnectionLiveData
-import com.arekalov.presentation.viewModels.SearchedViewModel
-import com.arekalov.presentation.viewModels.factories.SearchedViewModelFactory
+import com.arekalov.productsvk.adapters.SearchAndCategoryProductsAdapter
+import com.arekalov.productsvk.viewModels.ConnectionLiveData
+import com.arekalov.productsvk.viewModels.SearchedViewModel
+import com.arekalov.productsvk.viewModels.factories.SearchedViewModelFactory
+import com.arekalov.productsvk.MainActivity
 import com.arekalov.productsvk.R
 import com.arekalov.productsvk.databinding.FragmentProductsInCategoryBinding
 import kotlinx.coroutines.delay
@@ -28,7 +29,7 @@ class ProductsInCategoryFragment : Fragment() {
     private lateinit var binding: FragmentProductsInCategoryBinding
     private lateinit var productsInCategoryAdapter: SearchAndCategoryProductsAdapter
     private val productsInCategoryViewModel: SearchedViewModel by viewModels {
-        SearchedViewModelFactory(ProductsRepository(ProductsNetworkService()))
+        SearchedViewModelFactory((activity as MainActivity).productsRepository)
     }
     private lateinit var connectionLiveData: ConnectionLiveData
     private lateinit var repository: ProductsRepository

@@ -1,13 +1,10 @@
-package com.arekalov.presentation.adapters
+package com.arekalov.productsvk.adapters
 
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.arekalov.presentation.R
 import com.arekalov.productsvk.databinding.CarouselItemBinding
 import com.bumptech.glide.Glide
 
@@ -28,10 +25,7 @@ class CarouselAdapter(private var arrayList: List<String>) :
         return arrayList.size
     }
 
-    inner class ViewHolder(val binding: CarouselItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        var imageView: ImageView
-        init {
-            imageView = binding.ivPhoto
-        }
+    inner class ViewHolder(binding: CarouselItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        var imageView: ImageView = binding.ivPhoto
     }
 }

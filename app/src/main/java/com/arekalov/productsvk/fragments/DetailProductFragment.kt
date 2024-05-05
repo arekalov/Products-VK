@@ -1,4 +1,4 @@
-package com.arekalov.presentation.fragments
+package com.arekalov.productsvk.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.arekalov.data.models.Product
-import com.arekalov.presentation.adapters.CarouselAdapter
+import com.arekalov.productsvk.adapters.CarouselAdapter
 import com.arekalov.productsvk.R
 import com.arekalov.productsvk.databinding.FragmentDetailProductBinding
 import com.google.android.material.carousel.CarouselLayoutManager

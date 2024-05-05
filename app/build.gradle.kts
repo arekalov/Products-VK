@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("androidx.navigation.safeargs.kotlin")
+    id("kotlin-kapt")
 }
 
 android {
@@ -60,6 +61,14 @@ dependencies {
 
 //  coroutines
     implementation(libs.kotlinx.coroutines.android)
+
+//    dagger
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
+
+    //    Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
     
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -72,6 +81,5 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-//    implementation(project(":presentation"))
     implementation(project(":data"))
 }

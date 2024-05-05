@@ -1,4 +1,4 @@
-package com.arekalov.presentation.viewModels
+package com.arekalov.productsvk.viewModels
 
 import android.app.Application
 import android.content.Context

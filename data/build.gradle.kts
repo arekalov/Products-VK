@@ -45,10 +45,10 @@ java {
 }
 dependencies {
 //    Retrofit
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.5.0")
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 
 //    paging
-    implementation("androidx.paging:paging-runtime:3.2.1")
+    implementation(libs.androidx.paging.runtime.ktx)
 
 }

@@ -1,4 +1,4 @@
-package com.arekalov.presentation.viewModels
+package com.arekalov.productsvk.viewModels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

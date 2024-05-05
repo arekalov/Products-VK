@@ -1,4 +1,4 @@
-package com.arekalov.presentation.adapters
+package com.arekalov.productsvk.adapters
 
 import androidx.recyclerview.widget.RecyclerView
 import com.arekalov.data.models.Product

@@ -1,4 +1,4 @@
-package com.arekalov.presentation.fragments
+package com.arekalov.productsvk.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,12 +11,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.arekalov.data.network.ProductsNetworkService
-import com.arekalov.data.network.ProductsRepository
-import com.arekalov.presentation.adapters.CategoriesAdapter
-import com.arekalov.presentation.viewModels.CategoriesViewModel
-import com.arekalov.presentation.viewModels.ConnectionLiveData
-import com.arekalov.presentation.viewModels.factories.CategoriesViewModelFactory
+import com.arekalov.productsvk.adapters.CategoriesAdapter
+import com.arekalov.productsvk.viewModels.CategoriesViewModel
+import com.arekalov.productsvk.viewModels.ConnectionLiveData
+import com.arekalov.productsvk.viewModels.factories.CategoriesViewModelFactory
+import com.arekalov.productsvk.MainActivity
 import com.arekalov.productsvk.R
 import com.arekalov.productsvk.databinding.FragmentCategoriesBinding
 import kotlinx.coroutines.delay
@@ -26,7 +25,7 @@ class CategoriesFragment : Fragment() {
     private lateinit var binding: FragmentCategoriesBinding
     private lateinit var categoriesAdapter: CategoriesAdapter
     private val categoryViewModel: CategoriesViewModel by viewModels {
-        CategoriesViewModelFactory(ProductsRepository(ProductsNetworkService()))
+        CategoriesViewModelFactory((activity as MainActivity).productsRepository)
     }
     private lateinit var connectionLiveData: ConnectionLiveData
     override fun onCreate(savedInstanceState: Bundle?) {

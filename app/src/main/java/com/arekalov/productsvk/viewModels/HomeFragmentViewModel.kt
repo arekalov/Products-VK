@@ -1,4 +1,4 @@
-package com.arekalov.presentation.viewModels
+package com.arekalov.productsvk.viewModels
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -12,7 +12,7 @@ import androidx.paging.cachedIn
 import androidx.paging.liveData
 import com.arekalov.data.models.Product
 import com.arekalov.data.network.ProductsRepository
-import kotlinx.coroutines.launch
+
 private const val ITEMS_PER_PAGE = 20
 class HomeFragmentViewModel(val repository: ProductsRepository): ViewModel() {
     private var productsLiveData = MutableLiveData<PagingData<Product>>()
