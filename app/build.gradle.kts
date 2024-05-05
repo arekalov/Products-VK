@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -15,6 +16,11 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildFeatures {
+        viewBinding = true
     }
 
     buildTypes {
@@ -36,9 +42,24 @@ android {
 }
 
 dependencies {
-//    for navigation
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
+    //    Paging
+    implementation(libs.androidx.paging.runtime)
+
+//        ssp sdp
+    implementation(libs.sdp.android)
+    implementation(libs.ssp.android)
+
+//        glide
+    implementation(libs.glide)
+
+//    pagination
+    implementation(libs.androidx.paging.runtime.ktx)
+
+//        carousel
+    implementation(libs.material.v190)
+
+//  coroutines
+    implementation(libs.kotlinx.coroutines.android)
     
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -47,9 +68,10 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
-    implementation(project(":presentation"))
-    implementation(project(":data"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+//    implementation(project(":presentation"))
+    implementation(project(":data"))
 }

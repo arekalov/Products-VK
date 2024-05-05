@@ -8,30 +8,33 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.arekalov.data.network.ProductsNetworkService
 import com.arekalov.data.network.ProductsRepository
-import com.arekalov.presentation.R
 import com.arekalov.presentation.adapters.SearchAndCategoryProductsAdapter
-import com.arekalov.presentation.databinding.FragmentProductsInCategoryBinding
 import com.arekalov.presentation.viewModels.ConnectionLiveData
 import com.arekalov.presentation.viewModels.SearchedViewModel
+import com.arekalov.presentation.viewModels.factories.SearchedViewModelFactory
+import com.arekalov.productsvk.R
+import com.arekalov.productsvk.databinding.FragmentProductsInCategoryBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class ProductsInCategoryFragment : Fragment() {
     private lateinit var binding: FragmentProductsInCategoryBinding
     private lateinit var productsInCategoryAdapter: SearchAndCategoryProductsAdapter
-    private lateinit var productsInCategoryViewModel: SearchedViewModel
+    private val productsInCategoryViewModel: SearchedViewModel by viewModels {
+        SearchedViewModelFactory(ProductsRepository(ProductsNetworkService()))
+    }
     private lateinit var connectionLiveData: ConnectionLiveData
     private lateinit var repository: ProductsRepository
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         repository = ProductsRepository(ProductsNetworkService())
-        productsInCategoryViewModel = SearchedViewModel(repository)
         val onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 findNavController().navigate(R.id.categoriesFragment)

@@ -14,11 +14,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.arekalov.data.network.ProductsNetworkService
 import com.arekalov.data.network.ProductsRepository
 import com.arekalov.presentation.adapters.ProductsAdapter
-import com.arekalov.presentation.databinding.FragmentHomeBinding
 import com.arekalov.presentation.viewModels.ConnectionLiveData
 import com.arekalov.presentation.viewModels.HomeFragmentViewModel
 import com.arekalov.presentation.viewModels.factories.HomeFragmentViewModelFactory
-import com.arekalov.presentation.viewModels.factories.SearchedViewModelFactory
+import com.arekalov.productsvk.databinding.FragmentHomeBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

@@ -2,13 +2,11 @@ package com.arekalov.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.arekalov.data.models.Product
-import com.arekalov.presentation.databinding.ProductCardBinding
+import com.arekalov.productsvk.databinding.ProductCardBinding
 import com.bumptech.glide.Glide
 
 class SearchAndCategoryProductsAdapter :

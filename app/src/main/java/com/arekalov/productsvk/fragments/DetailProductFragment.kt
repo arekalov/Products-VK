@@ -1,6 +1,5 @@
 package com.arekalov.presentation.fragments
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,11 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.arekalov.data.models.Product
-import com.arekalov.presentation.R
 import com.arekalov.presentation.adapters.CarouselAdapter
-import com.arekalov.presentation.databinding.FragmentDetailProductBinding
+import com.arekalov.productsvk.R
+import com.arekalov.productsvk.databinding.FragmentDetailProductBinding
 import com.google.android.material.carousel.CarouselLayoutManager
-import kotlin.math.log
 
 
 class DetailProductFragment : Fragment() {

@@ -4,11 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.arekalov.data.models.Product
-import com.arekalov.presentation.databinding.ProductCardBinding
-import com.bumptech.glide.Glide
+import com.arekalov.productsvk.databinding.ProductCardBinding
 
 class ProductsAdapter : PagingDataAdapter<Product, ProductViewBinding>(PRODUCT_DIFF_CALLBACK) {
     var onClick: ((Product) -> Unit)? = null

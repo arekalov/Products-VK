@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.arekalov.presentation.R
-import com.arekalov.presentation.databinding.CarouselItemBinding
+import com.arekalov.productsvk.databinding.CarouselItemBinding
 import com.bumptech.glide.Glide
 
 

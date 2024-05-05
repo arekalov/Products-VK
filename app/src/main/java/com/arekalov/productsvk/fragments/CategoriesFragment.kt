@@ -1,8 +1,6 @@
 package com.arekalov.presentation.fragments
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,12 +13,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.arekalov.data.network.ProductsNetworkService
 import com.arekalov.data.network.ProductsRepository
-import com.arekalov.presentation.R
 import com.arekalov.presentation.adapters.CategoriesAdapter
-import com.arekalov.presentation.databinding.FragmentCategoriesBinding
 import com.arekalov.presentation.viewModels.CategoriesViewModel
 import com.arekalov.presentation.viewModels.ConnectionLiveData
 import com.arekalov.presentation.viewModels.factories.CategoriesViewModelFactory
+import com.arekalov.productsvk.R
+import com.arekalov.productsvk.databinding.FragmentCategoriesBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

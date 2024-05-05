@@ -2,7 +2,7 @@ package com.arekalov.presentation.adapters
 
 import androidx.recyclerview.widget.RecyclerView
 import com.arekalov.data.models.Product
-import com.arekalov.presentation.databinding.ProductCardBinding
+import com.arekalov.productsvk.databinding.ProductCardBinding
 import com.bumptech.glide.Glide
 
 class ProductViewBinding(

@@ -5,7 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.arekalov.presentation.databinding.CategoryCardBinding
+import com.arekalov.productsvk.databinding.CategoryCardBinding
+
 
 class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.VIewHolder>() {
     inner class VIewHolder(val binding: CategoryCardBinding) : RecyclerView.ViewHolder(binding.root)

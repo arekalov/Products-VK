@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
-import com.arekalov.presentation.R
 import com.arekalov.presentation.viewModels.ConnectionLiveData
+import com.arekalov.productsvk.R
 
 class NoInternetFragment : Fragment() {
     private lateinit var connectionLiveData: ConnectionLiveData

@@ -15,13 +15,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.arekalov.data.network.ProductsNetworkService
 import com.arekalov.data.network.ProductsRepository
-import com.arekalov.presentation.R
-import com.arekalov.presentation.adapters.ProductsAdapter
 import com.arekalov.presentation.adapters.SearchAndCategoryProductsAdapter
-import com.arekalov.presentation.databinding.FragmentSearchBinding
 import com.arekalov.presentation.viewModels.ConnectionLiveData
 import com.arekalov.presentation.viewModels.SearchedViewModel
 import com.arekalov.presentation.viewModels.factories.SearchedViewModelFactory
+import com.arekalov.productsvk.R
+import com.arekalov.productsvk.databinding.FragmentSearchBinding
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -38,7 +37,7 @@ class SearchFragment : Fragment() {
         super.onCreate(savedInstanceState)
         val onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                findNavController().navigate(R.id.homeFragment)
+                findNavController().navigate( R.id.homeFragment)
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
