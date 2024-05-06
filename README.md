@@ -1,6 +1,6 @@
 # Products-VK
 ## **Artem Rekalov**
-#### Это тестовое задание для прохождения на стажировку в VK (направление Android-разработчик)
+#### Тестовое задание для прохождения на стажировку в VK (направление Android-разработчик в Mail.ru)
 
 ### Было сделано
 1. Основная часть задания с пагинацией по 20 элементов
@@ -12,15 +12,15 @@
 ### Стек
 - Kotlin
 - Android navigation
-- Paging 3 
+- Paging3 
 - Kotlin Coroutines
 - Retrofit
-- Glidea
+- Dagger2
+- Glide
 - ssp, sdp <https://github.com/intuit/sdp> (лучшая адаптация приложения к разным размерам экрана)
 
 ### Архитектура 
-1. App (точка входа в приложение, корневой навигационный граф, MainActivity)
-2. Presentation (UI слой со всеми фрагментами, View моделями и адаптерами)
+1. App (основная логика приложения)
 3. Data (подключение к серверу, POJO, PagingSource)
 
 ### Особенности реализации
@@ -29,8 +29,7 @@
 - Single Activity
 - Навигация с помощью navigation components + BottomNavigationView
 - Пагинация с помощью Paging 3
-- Cotlin Coroutines + LiveData
+- Kotlin Coroutines + LiveData
+- Progress bars
 - Темная тема
 - Красивая иконка
-
-> PS А на стажировку то хочется)))
