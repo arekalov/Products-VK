@@ -16,7 +16,7 @@ import com.arekalov.data.network.ProductsRepository
 private const val ITEMS_PER_PAGE = 20
 class HomeFragmentViewModel(val repository: ProductsRepository): ViewModel() {
     private var productsLiveData = MutableLiveData<PagingData<Product>>()
-    val response =  Pager(
+    private val response =  Pager(
         config = PagingConfig(pageSize = ITEMS_PER_PAGE, enablePlaceholders = false),
         pagingSourceFactory = {repository.productsPagingSource()}
     ).liveData

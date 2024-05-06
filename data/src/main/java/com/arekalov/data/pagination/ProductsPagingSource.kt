@@ -10,7 +10,9 @@ import kotlin.math.max
 
 class ProductsPagingSource : PagingSource<Int, Product>() {
     private val STARTING_KEY = 0
-    val network = ProductsNetworkService()
+    private val delayTime = 2000L
+    private val network = ProductsNetworkService()
+    private val pageSize = 20 // Лимит на количество товаров в одном запросе
 
     private fun ensureValidKey(key: Int) = max(STARTING_KEY, key)
 
@@ -23,14 +25,19 @@ class ProductsPagingSource : PagingSource<Int, Product>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Product> {
         val start = params.key ?: STARTING_KEY
         try {
+            delay(delayTime)
+            // Ограничиваем количество запрашиваемых товаров в одном запросе
+            val loadSize = minOf(params.loadSize, pageSize)
             return LoadResult.Page(
-                data = network.getProducts(start, params.loadSize).body()!!.products,
+                data = network.getProducts(start, loadSize).body()!!.products,
                 prevKey = when (start) {
                     STARTING_KEY -> null
-                    else -> ensureValidKey(key = start - params.loadSize)
+                    else -> ensureValidKey(key = start - loadSize)
                 },
-                nextKey = start + params.loadSize + 1
+                nextKey = start + loadSize
             )
-        } catch (ex: Exception) {return LoadResult.Error(ex)}
+        } catch (ex: Exception) {
+            return LoadResult.Error(ex)
+        }
     }
 }

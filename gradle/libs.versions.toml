@@ -1,27 +1,28 @@
 [versions]
-agp = "8.3.0"
+agp = "8.3.2"
 daggerCompiler = "2.51.1"
 glide = "4.16.0"
 kotlin = "1.9.0"
-coreKtx = "1.12.0"
+coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
 appcompat = "1.6.1"
 kotlinxCoroutinesAndroid = "1.7.1"
-material = "1.11.0"
-activity = "1.8.0"
+material = "1.12.0"
+activity = "1.9.0"
 constraintlayout = "2.1.4"
-materialVersion = "1.9.0"
+materialVersion = "1.12.0"
 navigationFragmentKtx = "2.7.7"
 navigationUiKtx = "2.7.7"
 jetbrainsKotlinJvm = "1.9.0"
 pagingCommonKtx = "3.2.1"
-pagingCommonAndroid = "3.3.0-alpha04"
-pagingCommonJvm = "3.3.0-alpha04"
+pagingCommonAndroid = "3.3.0-rc01"
+pagingCommonJvm = "3.3.0-rc01"
 retrofit = "2.11.0"
 sdpAndroid = "1.1.0"
 sspAndroid = "1.1.0"
+truth = "1.4.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -48,6 +49,7 @@ material-v190 = { module = "com.google.android.material:material", version.ref =
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 sdp-android = { module = "com.intuit.sdp:sdp-android", version.ref = "sdpAndroid" }
 ssp-android = { module = "com.intuit.ssp:ssp-android", version.ref = "sspAndroid" }
+truth = { module = "com.google.truth:truth", version.ref = "truth" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
