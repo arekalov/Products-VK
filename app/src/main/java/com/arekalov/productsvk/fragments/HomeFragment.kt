@@ -1,5 +1,7 @@
 package com.arekalov.productsvk.fragments
 
+
+import MyLoadStateAdapter
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.GridLayoutManager
 import com.arekalov.productsvk.adapters.ProductsAdapter
 import com.arekalov.productsvk.viewModels.ConnectionLiveData
@@ -87,24 +90,49 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun observeProducts() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            try {
-                productsViewModel.getProducts()?.observe(viewLifecycleOwner) {
-                    productsAdapter.submitData(lifecycle, it)
-                }
-            } catch (ex: Throwable) {
-                Log.e("error", "observeProducts: ${ex.message}")
+//    private fun observeProducts() {
+//        viewLifecycleOwner.lifecycleScope.launch {
+//            try {
+//                productsViewModel.getProducts()?.observe(viewLifecycleOwner) {
+//                    Log.e("loading", "observeProducts: loaded data", )
+//                    productsAdapter.submitData(lifecycle, it)
+//                }
+//            } catch (ex: Throwable) {
+//                Log.e("error", "observeProducts: ${ex.message}")
+//            }
+//        }
+//    }
+private fun observeProducts() {
+    viewLifecycleOwner.lifecycleScope.launch {
+        try {
+            productsViewModel.getProducts()?.observe(viewLifecycleOwner) {
+                Log.e("loading", "observeProducts: loaded data", )
+                productsAdapter.submitData(lifecycle, it)
             }
+        } catch (ex: Throwable) {
+            Log.e("error", "observeProducts: ${ex.message}")
         }
     }
+}
 
 
     private fun setUpProductAdapter() {
         productsAdapter = ProductsAdapter()
+        val footerAdapter = MyLoadStateAdapter()
+        binding.rvProducts.adapter = productsAdapter.withLoadStateFooter(footerAdapter)
+        val layManager =  GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
+        layManager.spanSizeLookup =  object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                return if (position == productsAdapter.itemCount  && footerAdapter.itemCount > 0) {
+                    2
+                } else {
+                    1
+                }
+            }
+        }
         binding.rvProducts.apply {
-            adapter = productsAdapter
-            layoutManager = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
+            layoutManager = layManager
+            adapter = productsAdapter.withLoadStateFooter(MyLoadStateAdapter())
         }
     }
 

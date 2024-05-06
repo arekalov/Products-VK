@@ -12,10 +12,11 @@ import androidx.paging.cachedIn
 import androidx.paging.liveData
 import com.arekalov.data.models.Product
 import com.arekalov.data.network.ProductsRepository
+import kotlinx.coroutines.delay
 
 private const val ITEMS_PER_PAGE = 20
 class HomeFragmentViewModel(val repository: ProductsRepository): ViewModel() {
-    private var productsLiveData = MutableLiveData<PagingData<Product>>()
+    var productsLiveData = MutableLiveData<PagingData<Product>>()
     private val response =  Pager(
         config = PagingConfig(pageSize = ITEMS_PER_PAGE, enablePlaceholders = false),
         pagingSourceFactory = {repository.productsPagingSource()}
@@ -30,4 +31,5 @@ class HomeFragmentViewModel(val repository: ProductsRepository): ViewModel() {
             Log.e("error", "getProducts: response is null", )
             return null}
     }
+
 }
