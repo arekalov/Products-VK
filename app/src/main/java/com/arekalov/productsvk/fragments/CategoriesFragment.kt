@@ -48,6 +48,7 @@ class CategoriesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.progressBar.visibility = View.VISIBLE
         lifecycleScope.launch {
             observeNetwork()
             delay(300)
@@ -86,6 +87,7 @@ class CategoriesFragment : Fragment() {
     private fun observeCategoriesLiveData() {
         categoryViewModel.observeSearchedViewModel().observe(viewLifecycleOwner, Observer {   categories ->
             categoriesAdapter.differ.submitList(categories)
+            binding.progressBar.visibility = View.INVISIBLE
         })
     }
 

@@ -54,6 +54,7 @@ class ProductsInCategoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.progressBar.visibility = View.VISIBLE
         lifecycleScope.launch {
             observeNetwork()
             delay(100)
@@ -93,6 +94,7 @@ class ProductsInCategoryFragment : Fragment() {
         productsInCategoryViewModel.observeSearchedViewModel().observe(viewLifecycleOwner, Observer {
             products->
             productsInCategoryAdapter.differ.submitList(products)
+            binding.progressBar.visibility = View.INVISIBLE
         })
     }
 
