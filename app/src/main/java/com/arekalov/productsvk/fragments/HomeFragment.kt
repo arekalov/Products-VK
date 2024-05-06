@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.GridLayoutManager
 import com.arekalov.productsvk.adapters.ProductsAdapter
 import com.arekalov.productsvk.viewModels.ConnectionLiveData
@@ -28,7 +27,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var connectionLiveData: ConnectionLiveData
 
-    private  val productsViewModel: HomeFragmentViewModel by viewModels {
+    private val productsViewModel: HomeFragmentViewModel by viewModels {
         HomeFragmentViewModelFactory((activity as MainActivity).productsRepository)
     }
     private lateinit var productsAdapter: ProductsAdapter
@@ -54,6 +53,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.progressBar.visibility = View.VISIBLE
         lifecycleScope.launch {
             observeNetwork()
             delay(300)
@@ -90,40 +90,28 @@ class HomeFragment : Fragment() {
         }
     }
 
-//    private fun observeProducts() {
-//        viewLifecycleOwner.lifecycleScope.launch {
-//            try {
-//                productsViewModel.getProducts()?.observe(viewLifecycleOwner) {
-//                    Log.e("loading", "observeProducts: loaded data", )
-//                    productsAdapter.submitData(lifecycle, it)
-//                }
-//            } catch (ex: Throwable) {
-//                Log.e("error", "observeProducts: ${ex.message}")
-//            }
-//        }
-//    }
-private fun observeProducts() {
-    viewLifecycleOwner.lifecycleScope.launch {
-        try {
-            productsViewModel.getProducts()?.observe(viewLifecycleOwner) {
-                Log.e("loading", "observeProducts: loaded data", )
-                productsAdapter.submitData(lifecycle, it)
+    private fun observeProducts() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                productsViewModel.getProducts()?.observe(viewLifecycleOwner) {
+                    productsAdapter.submitData(lifecycle, it)
+                }
+            } catch (ex: Throwable) {
+                Log.e("error", "observeProducts: ${ex.message}")
             }
-        } catch (ex: Throwable) {
-            Log.e("error", "observeProducts: ${ex.message}")
         }
     }
-}
 
 
     private fun setUpProductAdapter() {
         productsAdapter = ProductsAdapter()
         val footerAdapter = MyLoadStateAdapter()
         binding.rvProducts.adapter = productsAdapter.withLoadStateFooter(footerAdapter)
-        val layManager =  GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
-        layManager.spanSizeLookup =  object : GridLayoutManager.SpanSizeLookup() {
+        val layManager = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
+        layManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
-                return if (position == productsAdapter.itemCount  && footerAdapter.itemCount > 0) {
+                binding.progressBar.visibility = View.INVISIBLE
+                return if (position == productsAdapter.itemCount && footerAdapter.itemCount > 0) {
                     2
                 } else {
                     1
