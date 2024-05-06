@@ -1,27 +1,45 @@
 package com.arekalov.productsvk.di
 
-import com.arekalov.data.models.Categories
-import com.arekalov.data.models.Product
-import com.arekalov.data.models.Products
+import com.arekalov.productsvk.adapters.MyLoadStateAdapter
 import com.arekalov.data.network.ProductsApi
 import com.arekalov.data.network.ProductsNetworkService
 import com.arekalov.data.network.ProductsRepository
 import com.arekalov.productsvk.MainActivity
-import dagger.Binds
+import com.arekalov.productsvk.adapters.*
 import dagger.Component
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
 
-@Component(modules = [NetworkModule::class])
+@Component(modules = [NetworkModule::class, AdaptersModule::class])
 interface AppComponent {
     fun inject(mainActivity: MainActivity)
+}
+
+
+@Module
+object AdaptersModule{
+    @Provides
+    fun provideSearchAndCategoryProductsAdapter(): SearchAndCategoryProductsAdapter {
+        return SearchAndCategoryProductsAdapter()
+    }
+
+    @Provides
+    fun provideCategoriesAdapter(): CategoriesAdapter {
+        return CategoriesAdapter()
+    }
+
+    @Provides
+    fun provideProductsAdapter(): ProductsAdapter {
+        return ProductsAdapter()
+    }
+
+    @Provides
+    fun provideMyLoadStateAdapter(): MyLoadStateAdapter {
+        return MyLoadStateAdapter()
+    }
 }
 
 @Module

@@ -1,3 +1,5 @@
+package com.arekalov.productsvk.adapters
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible

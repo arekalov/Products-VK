@@ -92,7 +92,7 @@ class CategoriesFragment : Fragment() {
     }
 
     private fun prepareAdapter() {
-        categoriesAdapter = CategoriesAdapter()
+        categoriesAdapter = (activity as MainActivity).categoriesAdapter
         binding.rvCategories.apply {
             adapter = categoriesAdapter
             layoutManager = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)

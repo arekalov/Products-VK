@@ -123,7 +123,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun prepareProductsAdapter() {
-        productsAdapter = SearchAndCategoryProductsAdapter()
+        productsAdapter = (activity as MainActivity).searchAndCategoryProductsAdapter
         binding.rvProducts.apply {
             adapter = productsAdapter
             layoutManager = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)

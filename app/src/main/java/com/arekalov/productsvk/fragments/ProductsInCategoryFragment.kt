@@ -35,7 +35,7 @@ class ProductsInCategoryFragment : Fragment() {
     private lateinit var repository: ProductsRepository
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        repository = ProductsRepository(ProductsNetworkService())
+        repository = (activity as MainActivity).productsRepository
         val onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 findNavController().navigate(R.id.categoriesFragment)
@@ -99,7 +99,7 @@ class ProductsInCategoryFragment : Fragment() {
     }
 
     private fun prepareAdapter() {
-        productsInCategoryAdapter = SearchAndCategoryProductsAdapter()
+        productsInCategoryAdapter = (activity as MainActivity).searchAndCategoryProductsAdapter
         binding.rvProducts.apply {
             adapter = productsInCategoryAdapter
             layoutManager = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)

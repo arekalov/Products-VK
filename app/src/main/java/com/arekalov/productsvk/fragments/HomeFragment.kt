@@ -1,7 +1,7 @@
 package com.arekalov.productsvk.fragments
 
 
-import MyLoadStateAdapter
+import com.arekalov.productsvk.adapters.MyLoadStateAdapter
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -104,8 +104,8 @@ class HomeFragment : Fragment() {
 
 
     private fun setUpProductAdapter() {
-        productsAdapter = ProductsAdapter()
-        val footerAdapter = MyLoadStateAdapter()
+        productsAdapter =  (activity as MainActivity).productsAdapter
+        val footerAdapter = (activity as MainActivity).myLoadStateAdapter
         binding.rvProducts.adapter = productsAdapter.withLoadStateFooter(footerAdapter)
         val layManager = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
         layManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
@@ -120,7 +120,7 @@ class HomeFragment : Fragment() {
         }
         binding.rvProducts.apply {
             layoutManager = layManager
-            adapter = productsAdapter.withLoadStateFooter(MyLoadStateAdapter())
+            adapter = productsAdapter.withLoadStateFooter(footerAdapter)
         }
     }
 
