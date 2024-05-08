@@ -21,7 +21,7 @@
 
 ### Архитектура 
 1. App (основная логика приложения)
-3. Data (подключение к серверу, POJO, PagingSource)
+2. Data (подключение к серверу, POJO, PagingSource)
 
 ### Особенности реализации
 - Clean Architecture
